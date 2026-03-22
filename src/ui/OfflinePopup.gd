@@ -20,5 +20,5 @@ func _on_offline_earnings_ready(amount: float, seconds: float) -> void:
 		time_text = "%dh %dm" % [hours, minutes]
 	else:
 		time_text = "%dm" % minutes
-	dialog_text = "You were away for %s.\n\nYou earned $%.2f!" % [time_text, amount]
+	dialog_text = "You were away for %s.\n\nYou earned %s!" % [time_text, Format.currency(amount)]
 	popup_centered(Vector2i(300, 150))
