@@ -54,7 +54,8 @@ func load_game() -> void:
 	var elapsed: float = _calculate_offline_seconds(data)
 	GameManager.apply_save_data(data)
 	if elapsed > 10.0:
-		OfflineEarnings.trigger(elapsed)
+		# Defer so the main scene's UI nodes are ready to receive the signal
+		get_tree().process_frame.connect(OfflineEarnings.trigger.bind(elapsed), CONNECT_ONE_SHOT)
 
 func delete_save() -> void:
 	if FileAccess.file_exists(SAVE_PATH):
