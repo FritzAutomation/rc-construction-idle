@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="rc-construction-idle"
+run/main_scene="res://src/ui/MainSiteView.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+SaveSystem="*res://src/core/SaveSystem.gd"
+OfflineEarnings="*res://src/core/OfflineEarnings.gd"
+GameManager="*res://src/core/GameManager.gd"
 
 [physics]
 

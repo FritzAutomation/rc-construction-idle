@@ -82,15 +82,20 @@ eventually triggers a prestige loop.
 ---
 
 ## Current Milestone
+**M2 — Playable Game**
+- [x] MachinePanel — reusable buy/upgrade row for all machines
+- [x] MainSiteView shows all machines, phase progress, scrollable list
+- [x] Auto-save every 30s + save on close/focus-loss
+- [ ] Offline earnings popup on return
+- [ ] Prestige button when Complete phase reached
+
+## Completed Milestones
 **M1 — Core Loop Foundation**
 - [x] Project structure created
 - [x] GameManager singleton scaffolded
-- [ ] Dump Truck purchasable and earning passively
-- [ ] Currency display updating in real time
-- [ ] Basic save/load working
-
-## Completed Milestones
-*(none yet)*
+- [x] Dump Truck purchasable and earning passively
+- [x] Currency display updating in real time
+- [x] Basic save/load working
 
 ---
 

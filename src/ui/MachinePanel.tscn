@@ -1,0 +1,53 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/ui/MachinePanel.gd" id="1_script"]
+
+[node name="MachinePanel" type="PanelContainer"]
+custom_minimum_size = Vector2(0, 80)
+script = ExtResource("1_script")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="InfoVBox" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MachineName" type="Label" parent="HBoxContainer/InfoVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Machine Name"
+
+[node name="StatusLabel" type="Label" parent="HBoxContainer/InfoVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+
+[node name="MachineEps" type="Label" parent="HBoxContainer/InfoVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+text = "$0.00/sec"
+
+[node name="ButtonVBox" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+custom_minimum_size = Vector2(160, 0)
+alignment = 1
+
+[node name="BuyButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 40)
+text = "Buy"
+
+[node name="UpgradeButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 40)
+text = "Upgrade"
+
+[connection signal="pressed" from="HBoxContainer/ButtonVBox/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/ButtonVBox/UpgradeButton" to="." method="_on_upgrade_button_pressed"]

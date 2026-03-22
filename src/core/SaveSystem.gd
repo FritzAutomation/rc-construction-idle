@@ -6,6 +6,26 @@ extends Node
 # =============================================================================
 
 const SAVE_PATH := "user://savegame.json"
+const AUTO_SAVE_INTERVAL := 30.0  # seconds
+
+var _auto_save_timer: float = 0.0
+
+func _ready() -> void:
+	# Also save when app is about to close or lose focus
+	get_tree().auto_accept_quit = false
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_game()
+		get_tree().quit()
+	elif what == NOTIFICATION_APPLICATION_FOCUS_OUT:
+		save_game()
+
+func _process(delta: float) -> void:
+	_auto_save_timer += delta
+	if _auto_save_timer >= AUTO_SAVE_INTERVAL:
+		_auto_save_timer = 0.0
+		save_game()
 
 func save_game() -> void:
 	var data := GameManager.get_save_data()
