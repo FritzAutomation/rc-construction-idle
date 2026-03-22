@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://src/ui/MainSiteView.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://src/ui/OfflinePopup.tscn" id="2_offline"]
 
 [node name="MainSiteView" type="Control"]
 layout_mode = 3
@@ -62,9 +63,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 8
 
+[node name="PrestigeButton" type="Button" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(0, 56)
+theme_override_font_sizes/font_size = 20
+text = "PRESTIGE"
+visible = false
+
 [node name="CheatButton" type="Button" parent="MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 custom_minimum_size = Vector2(0, 44)
 theme_override_font_sizes/font_size = 16
-text = "CHEAT +$100"
+text = "CHEAT +$100M"
+
+[node name="OfflinePopup" parent="." instance=ExtResource("2_offline")]

@@ -82,14 +82,20 @@ eventually triggers a prestige loop.
 ---
 
 ## Current Milestone
+**M3 — Polish & Android**
+- [ ] Number formatting (abbreviations: $1.5K, $2.3M, etc.)
+- [ ] Visual feedback on purchase/upgrade (flash, animation)
+- [ ] Android export and on-device testing
+- [ ] Remove cheat button (or hide behind debug flag)
+
+## Completed Milestones
 **M2 — Playable Game**
 - [x] MachinePanel — reusable buy/upgrade row for all machines
 - [x] MainSiteView shows all machines, phase progress, scrollable list
 - [x] Auto-save every 30s + save on close/focus-loss
-- [ ] Offline earnings popup on return
-- [ ] Prestige button when Complete phase reached
+- [x] Offline earnings popup on return
+- [x] Prestige button when Complete phase reached
 
-## Completed Milestones
 **M1 — Core Loop Foundation**
 - [x] Project structure created
 - [x] GameManager singleton scaffolded

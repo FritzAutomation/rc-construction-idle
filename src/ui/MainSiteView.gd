@@ -12,6 +12,7 @@ const MachinePanelScene := preload("res://src/ui/MachinePanel.tscn")
 @onready var eps_label: Label = %EpsLabel
 @onready var phase_label: Label = %PhaseLabel
 @onready var machine_list: VBoxContainer = %MachineList
+@onready var prestige_button: Button = %PrestigeButton
 @onready var cheat_button: Button = %CheatButton
 
 func _ready() -> void:
@@ -19,11 +20,14 @@ func _ready() -> void:
 	GameManager.earnings_per_second_changed.connect(_on_eps_changed)
 	GameManager.phase_unlocked.connect(_on_phase_unlocked)
 
+	prestige_button.pressed.connect(_on_prestige_pressed)
 	cheat_button.pressed.connect(_on_cheat_pressed)
+	GameManager.prestige_completed.connect(_on_prestige_completed)
 
 	_on_currency_changed(GameManager.currency)
 	_on_eps_changed(GameManager.earnings_per_second)
 	_update_phase_display()
+	_update_prestige_button()
 	_build_machine_panels()
 
 # ---------------------------------------------------------------------------
@@ -60,6 +64,7 @@ func _get_next_phase() -> String:
 
 func _process(_delta: float) -> void:
 	_update_phase_display()
+	_update_prestige_button()
 
 # ---------------------------------------------------------------------------
 # Machine panels
@@ -72,7 +77,28 @@ func _build_machine_panels() -> void:
 		panel.setup(machine_id)
 
 # ---------------------------------------------------------------------------
+# Prestige
+# ---------------------------------------------------------------------------
+func _update_prestige_button() -> void:
+	if GameManager.can_prestige():
+		prestige_button.visible = true
+		var next := GameManager.prestige_count + 1
+		var bonus: float = GameManager.PRESTIGE_BONUSES[next] * 100
+		prestige_button.text = "PRESTIGE — +%.0f%% earnings bonus" % bonus
+	else:
+		prestige_button.visible = false
+
+func _on_prestige_pressed() -> void:
+	GameManager.do_prestige()
+
+func _on_prestige_completed(_prestige_count: int) -> void:
+	# Rebuild machine panels since all states reset
+	for child in machine_list.get_children():
+		child.queue_free()
+	_build_machine_panels()
+
+# ---------------------------------------------------------------------------
 # Cheat
 # ---------------------------------------------------------------------------
 func _on_cheat_pressed() -> void:
-	GameManager._add_currency(100.0)
+	GameManager._add_currency(100_000_000.0)
