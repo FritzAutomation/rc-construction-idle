@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SaveSystem="*res://src/core/SaveSystem.gd"
 OfflineEarnings="*res://src/core/OfflineEarnings.gd"
 GameManager="*res://src/core/GameManager.gd"
+GameTheme="*res://src/ui/GameTheme.gd"
 
 [physics]
 

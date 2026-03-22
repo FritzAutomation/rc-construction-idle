@@ -6,48 +6,66 @@
 custom_minimum_size = Vector2(0, 80)
 script = ExtResource("1_script")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="InfoVBox" type="VBoxContainer" parent="HBoxContainer"]
+[node name="IconPanel" type="PanelContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+custom_minimum_size = Vector2(52, 52)
+size_flags_vertical = 4
+
+[node name="MachineIcon" type="Label" parent="MarginContainer/HBoxContainer/IconPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InfoVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 2
 
-[node name="MachineName" type="Label" parent="HBoxContainer/InfoVBox"]
+[node name="MachineName" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Machine Name"
+theme_override_font_sizes/font_size = 17
 
-[node name="StatusLabel" type="Label" parent="HBoxContainer/InfoVBox"]
+[node name="StatusLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 13
 
-[node name="MachineEps" type="Label" parent="HBoxContainer/InfoVBox"]
+[node name="MachineEps" type="Label" parent="MarginContainer/HBoxContainer/InfoVBox"]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
-text = "$0.00/sec"
+theme_override_font_sizes/font_size = 13
 
-[node name="ButtonVBox" type="VBoxContainer" parent="HBoxContainer"]
+[node name="ButtonVBox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-custom_minimum_size = Vector2(160, 0)
+custom_minimum_size = Vector2(140, 0)
 alignment = 1
 
-[node name="BuyButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+[node name="BuyButton" type="Button" parent="MarginContainer/HBoxContainer/ButtonVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 custom_minimum_size = Vector2(0, 40)
 text = "Buy"
 
-[node name="UpgradeButton" type="Button" parent="HBoxContainer/ButtonVBox"]
+[node name="UpgradeButton" type="Button" parent="MarginContainer/HBoxContainer/ButtonVBox"]
 unique_name_in_owner = true
 layout_mode = 2
 custom_minimum_size = Vector2(0, 40)
 text = "Upgrade"
 
-[connection signal="pressed" from="HBoxContainer/ButtonVBox/BuyButton" to="." method="_on_buy_button_pressed"]
-[connection signal="pressed" from="HBoxContainer/ButtonVBox/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ButtonVBox/BuyButton" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/ButtonVBox/UpgradeButton" to="." method="_on_upgrade_button_pressed"]
